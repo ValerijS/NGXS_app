@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="angForm">
+            <h3>What To Do</h3>
+            <div class="form-group">
+                <label class="col-md-4">Name</label>
+                <input type="text" class="form-control" formControlName="name" #name/>
+                <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['name'].errors.required">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4">State</label>
+                <input type="state" class="form-control" formControlName="state" #state/>
+                <div *ngIf="angForm.controls['state'].invalid && (angForm.controls['state'].dirty || angForm.controls['state'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['state'].errors.required">
+                        State is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button (click)="addTask(name.value, state.value)" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid">Create Task</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

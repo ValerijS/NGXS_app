@@ -1,0 +1,80 @@
+<div class="right" *ngIf="tasks">
+
+    <h3>To Do List</h3>
+    <ul>
+        <!--<button (click)="save(tasks.tasks)" >Save</button>-->
+        <li *ngFor="let task of tasks | async"><span>{{ task.name }}</span><span>   =>  </span><button (click)="addTaskPending(task.name,task.state)">Selected</button>
+            <span>  or  </span><button (click)="addTaskArchived(task.name, 'New')">Archived</button>
+            <!-- <button (click)="save(task.name)" >Save</button>-->
+        </li>
+    </ul>
+
+    <div (click)="togllePending()">
+        <h3> Pending </h3>
+    </div>
+    <div *ngIf=' flagPending '>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasksPending | async">
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.state }}</td>
+                    <td><button (click)="addTaskCompleted(task.name, 'Completed')">Completed</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div (click)="toglleArchived()">
+        <h3> Archived </h3>
+    </div>
+    <div *ngIf=' flagArchived '>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasksArchived | async">
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.state }}</td>
+                    <td><button (click)="addTaskPending(task.name, 'Reselect')">Reselect</button></td>
+                    <td><button (click)="delTask(task.name)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div (click)="toglleCompleted()">
+        <h3> Completed </h3>
+    </div>
+    <div *ngIf=' flagCompleted '>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasksCompleted  | async">
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.state }}</td>
+                    <td><button (click)="addTaskArchived(task.name, 'Completed')">Archived</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div>
+        <button (click)="save()">Save</button>
+    </div>
