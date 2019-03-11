@@ -28,9 +28,7 @@ import {
 import {
     TasksService
 } from '../../tasks.service';
-import {
-    CreateComponent//.angForm as andForm
-} from '../../components/create/create.component';
+
 import {
     RemoveTask,
     RemoveTaskCompleted,
@@ -132,14 +130,7 @@ export class IndexComponent implements OnInit {
         }))
         this.store.dispatch(new RemoveTask(name))
         this.store.dispatch(new RemoveTaskCompleted(name))
-    }
-    
-    addTask(name, state) {
-        this.store.dispatch(new AddTask({
-            name,
-            state
-        }))
-    }
+    }    
 
     delTask(name) {
         this.store.dispatch(new RemoveTaskArchived(name))

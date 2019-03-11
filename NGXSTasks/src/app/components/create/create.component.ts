@@ -38,7 +38,7 @@ export class CreateComponent implements OnInit {
         this.store.dispatch(new AddTask({
             name,
             state
-        }));
+        })).subscribe(() => this.angForm.reset());
     }
     ngOnInit() {}
 }
